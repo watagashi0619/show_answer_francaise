@@ -1,0 +1,24 @@
+{
+    "name": "La Grammaire Active du Français Assistant",
+    "version": "1.0.0",
+    "manifest_version": 2,
+    "description": "答えを表示",
+    "browser_action": {
+        "default_title": "La Grammaire Active du Français Assistant"
+    },
+    "content_scripts": [{
+        "matches": ["http://www.tosa.media.kyoto-u.ac.jp/fr/*"],
+        "js": ["script.js"]
+      }],
+    "background":
+    {
+        "scripts": [ "background.js" ],
+        "persistent": false
+    },
+    "permissions": [
+      "tabs",
+      "background",
+      "http://*/*",
+      "https://*/*"
+    ]
+}
