@@ -15,7 +15,7 @@ for (let i = 0; i < iframes.length; i++) {
             }, {
                 once: true
             });
-        }, 400);
+        }, 500);
     }, false);
 }
 
@@ -50,7 +50,7 @@ function showAnswer() {
             var item = lilist[i].textContent;
             lastperiod = item.lastIndexOf(".") + 1;
             item = item.slice(0, lastperiod);
-            if (!(lilist[0].querySelector("a") === null)) {
+            if (!(lilist[i].querySelector("input[type='text']") === null)) {
                 item = item.replace("  ", " " + lilist[i].querySelector("input[type='text']").getAttribute("a") + " ");
             }
             item = String(i + 1) + ". " + item;
