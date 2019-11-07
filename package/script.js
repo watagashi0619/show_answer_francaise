@@ -54,7 +54,14 @@ function showAnswer() {
         }
     }
 
-    if (iframedocument.querySelector("h3").textContent.includes("日本語に訳しましょう")) {
+    let buttonselect = iframedocument.querySelectorAll("button");
+    for (piece of buttonselect) {
+        if(piece.getAttribute("onclick")=="judge_2afc()"||piece.getAttribute("onclick")=="judge_2afc();"){
+            piece.parentNode.removeChild(piece);
+        }
+    }
+
+    if (iframedocument.querySelector("h3").textContent.includes("日本語に訳し")) {
         let lilist = iframedocument.querySelectorAll("li");
         let fsentences = [];
         let jsentences = [];
@@ -62,9 +69,13 @@ function showAnswer() {
         for (let i = 0; i < lilist.length; i++) {
             let item = lilist[i].textContent;
             lastperiod = item.lastIndexOf(".") + 1;
-            item = item.slice(0, lastperiod);
+            lastqmark = item.lastIndexOf("?") + 1;
+            item = item.slice(0, Math.max(lastperiod,lastqmark));
             if (!(lilist[i].querySelector("input[type='text']") === null)) {
-                item = item.replace("  ", " " + lilist[i].querySelector("input[type='text']").getAttribute("a") + " ");
+                for(inputtext of lilist[i].querySelectorAll("input[type='text']")){
+                    item = item.replace("  ", " " + inputtext.getAttribute("a") + " ");
+                }
+                item = item.replace(/  /g," ");
             }
             item = String(i + 1) + ". " + item;
             fsentences.push(item);
